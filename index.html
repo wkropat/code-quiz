@@ -13,6 +13,7 @@ Save your high score! -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./style.css" />
+
     <title>Code Quiz</title>
   </head>
 
@@ -23,27 +24,36 @@ Save your high score! -->
             <!-- Header has link to high scores on top left and countdown timer on top left. -->
             <h1>View High Scores</h1>
             <!-- Add a timer -->
+            <div id="countdownTimer">Time:</div>
         </header>
 
         <main>
-            <!-- Create structure for question card, save score card, and high score leaderboard card -->
+            <!-- Create structure for intr card, question card, save score card, and high score leaderboard card -->
+
+            <div class="intro">
+                <h2>Coding Quiz Challenge</h2>
+                <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>       
+                <button id="startQuiz">Start Quiz!</button>                
+
+            </div>
 
             <div class="multChoice">
-                <h2>Questions???</h2>
-                <button id="startQuiz">Start Quiz!</button>
+                <h2 id="questionText"></h2>
+
+                
                 <!-- Dynamically add list here -->
                 <!-- Note that buttons have hover effect -->
                 <!-- Dynamically add right/wrong here -->
             </div>
 
             <div class="saveInit">
-                <h2>All Done!</h2>
+                <h2 id="finishedText">All Done!</h2>
                 <!-- Input initials in form -->
                 <button id="Submit">Submit</button>
             </div>
 
             <div class="highScores">
-                <h2>High Scores</h2>
+                <h2 id="highscoreText">High Scores</h2>
                 <!-- Your final score is: score -->
                 <!-- Dynamically add list here -->
                 <button id="clearHS">Clear High Scores</button>
@@ -51,7 +61,7 @@ Save your high score! -->
 
         </main>
 
-    <script src="./assets/js/script.js"></script>
+    <script src="./script.js"></script>
 
   </body>
 
