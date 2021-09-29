@@ -37,22 +37,26 @@ Save your high score! -->
 
             </div>
 
-            <div class="multChoice">
+            <div id="multChoice">
                 <h2 id="questionText"></h2>
-
-                
                 <!-- Dynamically add list here -->
                 <!-- Note that buttons have hover effect -->
                 <!-- Dynamically add right/wrong here -->
             </div>
 
-            <div class="saveInit">
+            <div id="saveInit">
                 <h2 id="finishedText">All Done!</h2>
                 <!-- Input initials in form -->
+                <form action="/action_page.php">
+                    <label for="initials">Initials</label><br>
+                    <input type="text" id="initials" name="initials" value="WSK"><br>
+                    <!-- Add div displaying score here -->
+                    <input type="submit" value="Submit">
+                </form> 
                 <button id="Submit">Submit</button>
             </div>
 
-            <div class="highScores">
+            <div id="highScores">
                 <h2 id="highscoreText">High Scores</h2>
                 <!-- Your final score is: score -->
                 <!-- Dynamically add list here -->
