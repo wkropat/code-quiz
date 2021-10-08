@@ -34,7 +34,7 @@ function countdown() {
     timer = setInterval(function () {
         timerCount--
         countdownTimer.textContent = timerCount
-        if (timerCount === 0) {
+        if (timerCount == 0) {
             clearInterval(timer)
             console.log(`Time is up!`)
             setLose()
@@ -43,52 +43,32 @@ function countdown() {
 };
 
 // When the start button is clicked:
-//  hide intro, display question 1, and start timer.
+    //  Hide intro, 
+    //  Display question 1, 
+    //  Start timer.
 
 startButton.onclick = function () {
     var intro = document.getElementById("intro");
     intro.style.display = "none";
-    //the click also brings you to the first question page
-    multChoice.style.display = "initial"
+    multChoice.style.display = "initial";
     askQuestion();
-    //starts the timer when the start button is clicked
     countdown();
 }
-function nextQuestion(event) {
-    // Pulls up the next question, until end of questions, instead pull up initial form
-
-    if (x == 2) {
-        allDone()
-    } else {
-        x = x + 1;
-        askQuestion()
-    }
-}
-
-function incorrect(event) {
-    // Generate div below card saying answer is wrong
-    var resultEl = document.createElement("div");
-    resultEl.textContent = "Incorrect. Try again!";
-    multChoice.append(resultEl);
-    // Penalize the wrong answer by 10 seconds
-    timerCount = timerCount - 10;
-}
-
 
 // Fill out All Done! Card
 
 function allDone() {
+    // Hide questions and show initials form
     multChoice.style.display = "none";
     saveInit.style.display = "initial";
-
-
-    // for (let i = 0; i < question[x].choices[i]; i++) {
-    //     var choiceEl = document.createElement("button");
-    //     choiceEl.textContent = question[x].choices[i];
-    //     multChoice.appendChild(choice);
-
-    // }
+    var score = timerCount;
+    scoreEl = document.createElement("p");
+    scoreEl.textContent = "You scored :" + score + " points.";
+    saveInit.appendChild(scoreEl);
+    localStorage.setItem("score", score);
+    // NEED TO ADD A BIT TO STORE THE INITIALS THAT WRE INPUT IN THE FORM
 }
+
 // Fill out Question Card
 function askQuestion() {
     // Ask multiple choice question
@@ -107,36 +87,30 @@ function askQuestion() {
     }
 
     var rightAnswer = document.getElementById("true")
-    var wrongAnswer = document.getElementById("false")
+    var wrongAnswer = document.querySelector("#false")
 
     rightAnswer.onclick = function () {
-    // Pulls up the next question, until end of questions, instead pull up initial form
+        // Pulls up the next question, 
+        //until end of questions, instead pull up initial form
+        if (x == 2) {
 
-    if (x == 2) {
-        allDone()
-    } else {
-        x = x + 1;
-        askQuestion()
-    }
+            allDone()
+        } else {
+            x = x + 1;
+            askQuestion()
+        }
     }
 
     wrongAnswer.onclick = function () {
-    // Generate div below card saying answer is wrong
-    var resultEl = document.createElement("div");
-    resultEl.textContent = "Incorrect. Try again!";
-    multChoice.append(resultEl);
-    // Penalize the wrong answer by 10 seconds
-    timerCount = timerCount - 10;
-
+        // Generate div below card saying answer is wrong
+        var resultEl = document.createElement("div");
+        resultEl.textContent = "Incorrect. Try again!";
+        multChoice.append(resultEl);
+        // Penalize the wrong answer by 10 seconds
+        timerCount = timerCount - 10;
     }
 
-
-
-    // rightAnswer.addEventListener("click", nextQuestion());
-    wrongAnswer.addEventListener("click", incorrect());
-
 }
-
 
 // Fill out High Score Card
 
@@ -154,106 +128,18 @@ function highScore() {
     }
 }
 
-// Start the quiz
-function startQuiz() {
-    startButton.disabled = true
-    timerCount = 60
-    countdown()
-    askQuestion()
-}
-
-// Event listeners below
-
-startButton.addEventListener("click", startQuiz);
-
 
 // If timer gets to zero go to high score page
-document.addEventListener("keypress", function (event) {
-    if (timerCount === 0) {
-        return
-    }
-});
+// document.addEventListener("keypress", function (event) {
+//     if (timerCount === 0) {
+//         return
+//     }
+// });
 
 function setLose() {
-
     timer.textContent = "Out of Time!";
     multChoice.style.display = "none";
     saveInit.style.display = "initial";
     highScores.style.display = "none";
-    score.textContent = "You scored 0 points."
 
 }
-
-
-
-
-
-
-
-
-
-// Evaluate if the user selected the correct button
-
-// function evaluateResults() {
-//     if 
-//     listen for user clicking buttons
-//         if content of button equals answer
-//             then result is true, 
-//             append correct answer div
-//             add 10 seconds to the timer
-//             x++
-//         else result is false
-//             append wrong answer div
-//             remove 10 seconds from the timer
-// inside of this function, iterate the number of questions (x in questions)
-// }
-// choiceEl.addEventListener("click", evaluateResults)
-
-// generateIntro
-
-
-
-// function generateIntro {
-//     var titleEl = document.createElement("h2");
-//     titleEl.textContent = "Coding Quiz Challenge!";
-//     var textEl = document.createElement("p");
-//     textEl.textContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
-//     var buttonEl = document.createElement("button");
-//     buttonEl.textContent("Start Quiz!");
-//     textEl.appendChild(buttonEl);
-//     titleEl.appendChild(textEl);
-//     card.appendChild(titleEl);
-
-// }
-
-// function generateQuestion {
-
-
-// }
-// var cardEl = document.getElementById("card");
-
-// function generateDone() {
-//     var titleEl = document.createElement("h2");
-//     titleEl.textContent = "All Done!";
-//     var formEl = document.createElement("form");
-//     formEl.setAttribute("method", "post");
-//     formEl.setAttribute("action", "submit.php");
-//     var inputEl = document.createElement("input");
-//     inputEl.setAttribute("type", "text");
-//     inputEl.setAttribute("name", "Initials");
-//     inputEl.setAttribute("placeholder", "Initials");
-//     var submitEl = document.createElement("input");
-//     submitEl.setAttribute("type", "submit");
-//     submitEl.setAttribute("value", "Submit");
-//     inputEl.append(submitEl);
-//     formEl.append(inputEl);
-
-//     titleEl.append(formEl);
-//     cardEl.appendChild(titleEl);
-// }
-// generateDone()
-
-// function generateHighScore() {
-
-
-// }
