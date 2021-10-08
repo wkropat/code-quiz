@@ -21,4 +21,4 @@
 
 # Screenshots
 
-![Live website screenshot](./screenshot.png) 
+![Live website screenshot](./screenshot.PNG) 
